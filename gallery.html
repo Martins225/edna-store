@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Edilight Events and Bakes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+/* =========================================
+   GALLERY FILTER
+========================================= */
+
+.gallery-filter-section {
+    padding: 30px 0;
+    background: #fff;
+}
+
+.gallery-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.category-btn {
+    border: 1px solid #d4af37;
+    background: transparent;
+    color: #333;
+    padding: 11px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background: #d4af37;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: #d4af37;
+    color: white;
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+}
+
+
+/* =========================================
+   GALLERY GRID
+========================================= */
+
+.gallery-page-section {
+    padding: 50px 0 90px;
+    background: #faf9f6;
+}
+
+.gallery-page-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+
+/* =========================================
+   GALLERY ITEM
+========================================= */
+
+.gallery-item {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #eee;
+
+    /* Initial hidden state */
+    opacity: 0;
+    transform: scale(0.75) translateY(35px);
+
+    animation: galleryPop 0.65s ease forwards;
+
+    cursor: pointer;
+}
+
+
+/* Large photos */
+
+.gallery-item-large {
+    height: 420px;
+    grid-row: span 1;
+}
+
+
+/* Image container */
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Actual image */
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s ease,
+        filter 0.6s ease;
+}
+
+
+/* Zoom image when hovering */
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.08);
+    filter: brightness(0.72);
+}
+
+
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
+
+.gallery-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 35px 22px 22px;
+
+    color: white;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.85)
+    );
+
+    transform: translateY(10px);
+    opacity: 0.9;
+
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-overlay span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.gallery-overlay p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   POP ANIMATION
+========================================= */
+
+@keyframes galleryPop {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.75) translateY(35px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.04) translateY(-5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+/* =========================================
+   HIDE FILTERED ITEMS
+========================================= */
+
+.gallery-item.hidden {
+    display: none;
+}
+
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.3s ease,
+                visibility 0.3s ease;
+}
+
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Lightbox image */
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+
+    text-align: center;
+}
+
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 80vh;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Caption */
+
+.lightbox-caption {
+    color: white;
+    margin-top: 15px;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+}
+
+
+/* Close */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+/* Previous / next */
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.lightbox-prev {
+    left: 25px;
+}
+
+.lightbox-next {
+    right: 25px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-close:hover {
+    background: #d4af37;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .gallery-page-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item,
+    .gallery-item-large {
+        height: 300px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .gallery-page-section {
+        padding: 30px 15px 60px;
+    }
+
+    .gallery-page-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .gallery-item,
+    .gallery-item-large {
+        height: 320px;
+    }
+
+    .gallery-filter {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+
+        padding: 5px 2px 12px;
+
+        scrollbar-width: none;
+    }
+
+    .gallery-filter::-webkit-scrollbar {
+        display: none;
+    }
+
+    .category-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
+
+    .lightbox-content img {
+        max-width: 88vw;
+        max-height: 70vh;
+    }
+    
+     
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="thumbnails/ChatGPT Image Sep 24, 2026, 12_04_34 PM.png" alt="Edilight Logo" 
+                style="width: 40px; height: 40px; margin-right: 10px;"
+                class="logo-image">
+                <span>Edilight Events & Bakes</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="menu.html" class="nav-link">Menu</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="menu.html#order" class="nav-link nav-cta">Order Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <p>A glimpse into our creative world</p>
+        </div>
+    </section>
+
+   <!-- Gallery Filter -->
+<section class="gallery-filter-section">
+    <div class="container">
+        <div class="gallery-filter">
+            <button class="category-btn active" data-filter="all">All</button>
+            <button class="category-btn" data-filter="wedding">Wedding Cakes</button>
+            <button class="category-btn" data-filter="birthday">Birthday Cakes</button>
+            <button class="category-btn" data-filter="events">Events</button>
+            <button class="category-btn" data-filter="pastries">Pastries</button>
+            <button class="category-btn" data-filter="cupcakes">Cupcakes</button>
+            <button class="category-btn" data-filter="custom">Custom Orders</button>
+        </div>
+    </div>
+</section>
+
+
+<!-- Gallery -->
+<section class="gallery-page-section">
+    <div class="container">
+
+        <div class="gallery-page-grid" id="galleryGrid">
+
+            <!-- ================= WEDDING CAKES ================= -->
+
+            <div class="gallery-item gallery-item-large" data-category="wedding">
+                <div class="gallery-image">
+                    <img src="thumbnails/Classic Wedding Cakes.png"
+                         alt="Elegant Wedding Cake">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Elegant Wedding Cake</span>
+                    <p>Multi-tiered masterpiece</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="wedding">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0025.jpg"
+                         alt="Rustic Wedding Cake">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Rustic Wedding</span>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="wedding">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0021.jpg"
+                         alt="Romantic Wedding Cake">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Romantic Design</span>
+                </div>
+            </div>
+
+
+            <!-- ================= BIRTHDAY CAKES ================= -->
+
+            <div class="gallery-item" data-category="birthday">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0030.jpg"
+                         alt="Birthday Cake">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Birthday Celebration</span>
+                </div>
+            </div>
+
+            <div class="gallery-item gallery-item-large" data-category="birthday">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0028.jpg"
+                         alt="Kids Birthday Cake">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Kids Birthday Cake</span>
+                    <p>Fun and colorful</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="birthday">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0026.jpg"
+                         alt="Milestone Birthday Cake">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Milestone Birthday</span>
+                </div>
+            </div>
+
+
+            <!-- ================= EVENTS ================= -->
+
+            <div class="gallery-item" data-category="events">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0029.jpg"
+                         alt="Corporate Event">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Corporate Event</span>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="events">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0044.jpg"
+                         alt="Anniversary Event">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Anniversary</span>
+                </div>
+            </div>
+
+            <div class="gallery-item gallery-item-large" data-category="events">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0042.jpg"
+                         alt="Event Setup">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Event Setup</span>
+                    <p>Full service planning</p>
+                </div>
+            </div>
+
+
+            <!-- ================= PASTRIES ================= -->
+
+            <div class="gallery-item" data-category="pastries">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0036.jpg"
+                         alt="Fresh Croissants">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Fresh Croissants</span>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="pastries">
+                <div class="gallery-image">
+                    <img src="thumbnails/pastry 2.webp"
+                         alt="Pain au Chocolat">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Pain au Chocolat</span>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="pastries">
+                <div class="gallery-image">
+                    <img src="thumbnails/pastry 3.jpg"
+                         alt="Cinnamon Rolls">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Cinnamon Rolls</span>
+                </div>
+            </div>
+
+
+            <!-- ================= CUPCAKES ================= -->
+
+            <div class="gallery-item" data-category="cupcakes">
+                <div class="gallery-image">
+                    <img src="thumbnails/vanilla-cupcakes-featured.jpg"
+                         alt="Vanilla Cupcakes">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Vanilla Cupcakes</span>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="cupcakes">
+                <div class="gallery-image">
+                    <!-- CHANGE THIS PATH TO YOUR REAL CUPCAKE IMAGE -->
+                    <img src="thumbnails/cupcake 1.png"
+                         alt="Chocolate Cupcakes">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Chocolate Cupcakes</span>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="cupcakes">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0021.jpg"
+                         alt="Red Velvet Cupcakes">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Red Velvet</span>
+                </div>
+            </div>
+
+
+            <!-- ================= CUSTOM ORDERS ================= -->
+
+            <div class="gallery-item gallery-item-large" data-category="custom">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0021.jpg"
+                         alt="Custom Cake Design">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Custom Design</span>
+                    <p>Anything you can imagine</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="custom">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0043.jpg"
+                         alt="Artistic Cake Creation">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Artistic Creations</span>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="custom">
+                <div class="gallery-image">
+                    <img src="thumbnails/IMG-20260922-WA0039.jpg"
+                         alt="Premium Custom Cake">
+                </div>
+
+                <div class="gallery-overlay">
+                    <span>Premium Quality</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- PHOTO LIGHTBOX -->
+
+<div class="gallery-lightbox" id="galleryLightbox">
+
+    <button class="lightbox-close" id="lightboxClose">
+        &times;
+    </button>
+
+    <button class="lightbox-prev" id="lightboxPrev">
+        &#10094;
+    </button>
+
+    <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <button class="lightbox-next" id="lightboxNext">
+        &#10095;
+    </button>
+
+</div>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Create Something Beautiful?</h2>
+            <p>Let's bring your vision to life</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Request Custom Order</a>
+                <a href="menu.html" class="btn btn-secondary">View Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Edilight Events & Bakes</h3>
+                    <p>Creating sweet memories since 2015. Your satisfaction is our greatest reward.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.xcorp.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.pinterest.com" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="menu.html">Custom Cakes</a></li>
+                        <li><a href="contact.html">Event Planning</a></li>
+                        <li><a href="contact.html">Catering</a></li>
+                        <li><a href="contact.html">Baking Classes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates and special offers</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Edilight Events & Bakes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edilight Events and Bakes - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <style>
+    .logo-image {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+ </style>
+  
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="thumbnails/ChatGPT Image Sep 24, 2026, 12_04_34 PM.png" alt="Edilight Logo" class="logo-image">
+                <span>Edilight Events & Bakes</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="menu.html" class="nav-link">Menu</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="menu.html#order" class="nav-link nav-cta">Order Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Edilight Events & Bakes</h1>
+            <p class="hero-subtitle">Where Every Celebration Begins with Sweetness</p>
+            <p class="hero-description">Premium baked goods and event planning services for your special moments</p>
+            <div class="hero-buttons">
+                <a href="menu.html" class="btn btn-primary">View Menu</a>
+                <a href="contact.html" class="btn btn-secondary">Book Event</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Featured Products Preview -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <p class="section-subtitle">Browse our cakes, pastries, cookies and cupcakes</p>
+            
+            <div class="featured-grid" id="featuredGrid">
+                <!-- Products will be dynamically loaded -->
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="menu.html" class="btn btn-primary">View Menu Page</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Edilight?</h2>
+            <div class="why-us-grid">
+                <div class="why-us-card">
+                    <div class="why-us-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Award-Winning</h3>
+                    <p>Recognized for excellence in baking and event planning</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Fresh Ingredients</h3>
+                    <p>Only the finest, locally-sourced ingredients</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Made with Love</h3>
+                    <p>Every creation is crafted with passion and care</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Delivery Available</h3>
+                    <p>Convenient delivery to your doorstep</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Preview -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"The wedding cake was absolutely stunning and tasted even better than it looked! Edilight made our special day perfect."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah & Michael</h4>
+                            <span>Wedding Client</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Best cupcakes in town! The attention to detail
+                             and flavor combinations are simply amazing. 
+                             Highly recommend!"
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Jennifer Adams</h4>
+                            <span>Regular Customer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"They handled our corporate event flawlessly. 
+                            Professional service and delicious treats that 
+                            impressed all our guests."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>David Thompson</h4>
+                            <span>Corporate Client</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Make Your Event Special?</h2>
+            <p>Contact us today for a free consultation</p>
+            <div class="cta-buttons">
+                <a href="menu.html" class="btn btn-primary">Browse Menu</a>
+                <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Edilight Events & Bakes</h3>
+                    <p>Creating sweet memories since 2015. Your satisfaction is our greatest reward.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.xcorp.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.pinterest.com" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="menu.html">Custom Cakes</a></li>
+                        <li><a href="contact.html">Event Planning</a></li>
+                        <li><a href="contact.html">Catering</a></li>
+                        <li><a href="contact.html">Baking Classes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates and special offers</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Edilight Events & Bakes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal: shared with the Menu page so Home-page Order Now buttons work -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" type="button">&times;</button>
+            <h3>Place Your Order</h3>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="orderName">Your Name</label>
+                    <input type="text" id="orderName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderEmail">Email</label>
+                    <input type="email" id="orderEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderPhone">Phone</label>
+                    <input type="tel" id="orderPhone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderItem">Item</label>
+                    <input type="text" id="orderItem" name="item" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="orderQuantity">Quantity</label>
+                    <input type="number" id="orderQuantity" name="quantity" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="orderDate">Preferred Date</label>
+                    <input type="date" id="orderDate" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderNotes">Special Requests</label>
+                    <textarea id="orderNotes" name="notes" rows="3" placeholder="Any special instructions or customization requests?"></textarea>
+                </div>
+                <div class="order-total">
+                    <span>Total:</span>
+                    <span id="orderTotal">₦0.00</span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Submit Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Order Submitted Successfully!</h3>
+            <p>We'll contact you shortly to confirm your order.</p>
+            <button class="btn btn-primary" id="successClose" type="button">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
